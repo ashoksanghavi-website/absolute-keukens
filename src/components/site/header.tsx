@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Phone, Menu, X, Star } from "lucide-react";
+import { Phone, Menu, X, Star, ArrowRight } from "lucide-react";
 import { NAV, COMPANY } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Wordmark } from "@/components/site/logo";
@@ -14,6 +14,7 @@ export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
   const [open, setOpen] = React.useState(false);
+  const [hovered, setHovered] = React.useState<string | null>(null);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 24));
@@ -38,6 +39,7 @@ export function Header() {
             <a href={COMPANY.emailHref} className="transition-colors hover:text-brass-soft">
               {COMPANY.email}
             </a>
+            <span className="h-3 w-px bg-ivory/20" />
             <a href={COMPANY.phoneHref} className="flex items-center gap-1.5 transition-colors hover:text-brass-soft">
               <Phone className="h-3.5 w-3.5" />
               {COMPANY.phone}
@@ -52,16 +54,16 @@ export function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         className={cn(
-          "sticky top-0 z-50 w-full transition-all duration-300",
-          scrolled
-            ? "border-b border-border/70 bg-ivory/85 backdrop-blur-xl shadow-[0_8px_30px_-18px_rgba(35,27,18,0.35)]"
-            : "border-b border-transparent bg-transparent"
+          "sticky top-0 z-50 w-full transition-all duration-500",
+          scrolled ? "px-3 pt-3" : "px-0 pt-0"
         )}
       >
         <div
           className={cn(
-            "mx-auto flex max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6",
-            scrolled ? "h-16" : "h-20"
+            "mx-auto flex items-center justify-between transition-all duration-500",
+            scrolled
+              ? "h-16 max-w-6xl rounded-full border border-border/70 bg-ivory/80 px-4 shadow-[0_18px_50px_-24px_rgba(35,27,18,0.5)] backdrop-blur-xl sm:px-5"
+              : "h-20 max-w-7xl border-b border-transparent bg-transparent px-5 sm:px-6"
           )}
         >
           <Link href="/" aria-label="Absolute Keukens home" className="group">
@@ -70,25 +72,34 @@ export function Header() {
             </motion.span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          {/* Nav with sliding highlight */}
+          <nav
+            className="hidden items-center gap-0.5 lg:flex"
+            onMouseLeave={() => setHovered(null)}
+          >
             {NAV.map((item) => {
               const active = pathname === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
+                  onMouseEnter={() => setHovered(item.href)}
                   className={cn(
-                    "group relative rounded-full px-4 py-2 text-[0.92rem] font-medium transition-colors",
+                    "relative rounded-full px-4 py-2 text-[0.92rem] font-medium transition-colors duration-200",
                     active ? "text-brass-deep" : "text-espresso/80 hover:text-espresso"
                   )}
                 >
-                  {item.label}
-                  <span
-                    className={cn(
-                      "absolute inset-x-4 -bottom-0.5 h-0.5 origin-left rounded-full bg-brass transition-transform duration-300",
-                      active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    )}
-                  />
+                  {hovered === item.href && (
+                    <motion.span
+                      layoutId="nav-highlight"
+                      className="absolute inset-0 -z-0 rounded-full bg-secondary"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    />
+                  )}
+                  <span className="relative z-10">{item.label}</span>
+                  {active && (
+                    <span className="absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-brass" />
+                  )}
                 </Link>
               );
             })}
@@ -97,7 +108,7 @@ export function Header() {
           <div className="hidden items-center gap-3 lg:flex">
             <a
               href={COMPANY.phoneHref}
-              className="flex items-center gap-2 rounded-full border border-espresso/15 px-4 py-2.5 text-sm font-semibold text-espresso transition-colors hover:border-brass hover:text-brass-deep"
+              className="flex items-center gap-2 rounded-full border border-espresso/15 px-4 py-2.5 text-sm font-semibold text-espresso transition-all duration-300 hover:-translate-y-0.5 hover:border-brass hover:text-brass-deep"
             >
               <Phone className="h-4 w-4" />
               Bel ons
@@ -165,14 +176,15 @@ export function Header() {
                         <Link
                           href={item.href}
                           onClick={() => setOpen(false)}
-                          className="group flex items-baseline gap-4 border-b border-border/70 py-4"
+                          className="group flex items-center justify-between border-b border-border/70 py-4"
                         >
-                          <span className="w-8 font-display text-sm text-brass-deep">
-                            0{i + 1}
+                          <span className="flex items-baseline gap-4">
+                            <span className="w-8 font-display text-sm text-brass-deep">0{i + 1}</span>
+                            <span className="font-display text-3xl font-semibold tracking-tight text-espresso transition-colors group-hover:text-brass-deep">
+                              {item.label}
+                            </span>
                           </span>
-                          <span className="font-display text-3xl font-semibold tracking-tight text-espresso transition-colors group-hover:text-brass-deep">
-                            {item.label}
-                          </span>
+                          <ArrowRight className="h-5 w-5 text-espresso/30 transition-all duration-300 group-hover:translate-x-1 group-hover:text-brass-deep" />
                         </Link>
                       </motion.div>
                     )
@@ -180,10 +192,7 @@ export function Header() {
                 </motion.nav>
 
                 <div className="mt-auto py-8">
-                  <a
-                    href={COMPANY.phoneHref}
-                    className="flex items-center gap-2 text-lg font-semibold text-espresso"
-                  >
+                  <a href={COMPANY.phoneHref} className="flex items-center gap-2 text-lg font-semibold text-espresso">
                     <Phone className="h-5 w-5 text-brass-deep" />
                     {COMPANY.phone}
                   </a>

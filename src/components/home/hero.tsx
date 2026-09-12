@@ -83,16 +83,25 @@ export function Hero() {
           </motion.div>
 
           <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-espresso/70"
+            initial="hidden"
+            animate="show"
+            variants={{ show: { transition: { staggerChildren: 0.08, delayChildren: 0.85 } } }}
+            className="mt-8 flex flex-wrap gap-2.5"
           >
             {["Gratis prijsindicatie", "Tien jaar garantie", "Weinig overlast"].map((t) => (
-              <li key={t} className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-olive" />
+              <motion.li
+                key={t}
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE } },
+                }}
+                className="group flex items-center gap-2 rounded-full border border-espresso/10 bg-white/70 py-1.5 pl-1.5 pr-4 text-sm font-medium text-espresso/80 shadow-[0_2px_10px_-6px_rgba(35,27,18,0.3)] backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brass/40 hover:text-espresso"
+              >
+                <span className="grid h-6 w-6 place-items-center rounded-full bg-olive/12 text-olive transition-colors duration-300 group-hover:bg-olive group-hover:text-ivory">
+                  <Check className="h-3.5 w-3.5" />
+                </span>
                 {t}
-              </li>
+              </motion.li>
             ))}
           </motion.ul>
         </div>

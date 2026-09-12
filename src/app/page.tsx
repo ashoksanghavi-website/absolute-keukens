@@ -1,7 +1,6 @@
 import { Hero } from "@/components/home/hero";
 import { FotoscanCta } from "@/components/home/fotoscan-cta";
 import { TrustBar } from "@/components/home/trust-bar";
-import { Concept } from "@/components/home/concept";
 import { Services } from "@/components/home/services";
 import { Process } from "@/components/home/process";
 import { Projects } from "@/components/home/projects";
@@ -18,7 +17,6 @@ export default function Home() {
       <Hero />
       <FotoscanCta />
       <TrustBar />
-      <Concept />
       <Services />
       <Process />
       <Projects />

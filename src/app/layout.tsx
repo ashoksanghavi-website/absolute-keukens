@@ -4,6 +4,7 @@ import "./globals.css";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { ScrollProgress } from "@/components/site/scroll-progress";
+import { ScanPopup } from "@/components/site/scan-popup";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -63,6 +64,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <ScanPopup />
       </body>
     </html>
   );

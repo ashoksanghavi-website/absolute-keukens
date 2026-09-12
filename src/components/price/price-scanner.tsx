@@ -92,6 +92,7 @@ export function PriceScanner() {
 
   return (
     <div className="relative overflow-hidden rounded-[2rem] border border-border bg-card shadow-[0_40px_90px_-50px_rgba(35,27,18,0.5)]">
+      <div aria-hidden className="absolute inset-x-0 top-0 z-10 h-0.5 bg-gradient-to-r from-brass/0 via-brass to-brass/0" />
       {/* Stepper */}
       <div className="flex items-center gap-2 border-b border-border bg-ivory/60 px-6 py-4 text-xs font-semibold sm:gap-4">
         {[
@@ -192,14 +193,16 @@ function StepUpload({
       </p>
 
       <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {ANGLES.map((a) => {
+        {ANGLES.map((a, idx) => {
           const src = photos[a.key];
           return (
             <div key={a.key} className="group relative">
               <div
                 className={cn(
-                  "relative flex aspect-[4/5] flex-col items-center justify-center overflow-hidden rounded-2xl border-2 border-dashed transition-colors",
-                  src ? "border-transparent" : "border-border bg-ivory hover:border-brass/60"
+                  "relative flex aspect-[4/5] flex-col items-center justify-center overflow-hidden rounded-2xl border-2 transition-all duration-300",
+                  src
+                    ? "border-transparent"
+                    : "border-dashed border-border bg-gradient-to-b from-ivory to-secondary/50 group-hover:-translate-y-1 group-hover:border-brass/60 group-hover:shadow-[0_22px_44px_-26px_rgba(35,27,18,0.45)]"
                 )}
               >
                 {src ? (
@@ -219,10 +222,15 @@ function StepUpload({
                   </>
                 ) : (
                   <>
-                    <ImagePlus className="h-7 w-7 text-brass-deep" />
-                    <span className="mt-2 text-xs font-semibold text-espresso">{a.label}</span>
-                    <div className="mt-3 flex flex-col items-center gap-1.5">
-                      <label className="cursor-pointer rounded-full bg-espresso px-3 py-1 text-[0.7rem] font-semibold text-ivory transition-colors hover:bg-olive-deep">
+                    <span className="absolute left-3 top-3 font-display text-xs font-semibold text-brass-deep/60">
+                      0{idx + 1}
+                    </span>
+                    <span className="grid h-12 w-12 place-items-center rounded-full bg-espresso text-brass-soft transition-transform duration-300 group-hover:scale-110">
+                      <ImagePlus className="h-5 w-5" />
+                    </span>
+                    <span className="mt-3 text-sm font-semibold text-espresso">{a.label}</span>
+                    <div className="mt-4 flex flex-col items-center gap-2">
+                      <label className="cursor-pointer rounded-full bg-espresso px-4 py-1.5 text-[0.72rem] font-semibold text-ivory transition-colors hover:bg-brass">
                         Kies foto
                         <input
                           type="file"
@@ -233,9 +241,9 @@ function StepUpload({
                       </label>
                       <button
                         onClick={() => addSample(a.key, a.sample)}
-                        className="text-[0.68rem] font-medium text-brass-deep underline underline-offset-2 hover:text-brass"
+                        className="text-[0.7rem] font-medium text-brass-deep underline underline-offset-2 hover:text-brass"
                       >
-                        voorbeeld gebruiken
+                        of gebruik een voorbeeld
                       </button>
                     </div>
                   </>
@@ -420,9 +428,9 @@ function StepResult({ count, onReset }: { count: number; onReset: () => void }) 
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.05 }}
-              className="rounded-2xl border border-border bg-ivory p-3 text-center"
+              className="group/tile rounded-2xl border border-border bg-ivory p-3 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brass/40 hover:bg-card hover:shadow-[0_16px_30px_-22px_rgba(35,27,18,0.4)]"
             >
-              <div className="font-display text-xl font-semibold text-espresso">{it.value}</div>
+              <div className="font-display text-xl font-semibold text-espresso transition-colors group-hover/tile:text-brass-deep">{it.value}</div>
               <div className="mt-0.5 text-[0.68rem] leading-tight text-muted-foreground">{it.label}</div>
             </motion.div>
           ))}

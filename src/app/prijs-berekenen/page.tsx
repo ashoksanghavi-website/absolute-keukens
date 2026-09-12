@@ -37,17 +37,19 @@ export default function PrijsBerekenenPage() {
 
       <section className="pb-20">
         <div className="mx-auto max-w-5xl px-5 sm:px-6">
-          <div className="grid gap-4 rounded-3xl border border-border bg-card p-6 sm:grid-cols-2 lg:grid-cols-4">
-            {NOTES.map((n) => (
-              <div key={n.title} className="flex items-start gap-3">
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-olive/12 text-olive">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {NOTES.map((n, i) => (
+              <Reveal
+                key={n.title}
+                delay={i * 0.07}
+                className="group rounded-3xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-1 hover:border-brass/40 hover:shadow-[0_24px_50px_-32px_rgba(35,27,18,0.4)]"
+              >
+                <span className="grid h-11 w-11 place-items-center rounded-2xl bg-espresso text-brass-soft transition-colors duration-300 group-hover:bg-brass group-hover:text-white">
                   <n.icon className="h-5 w-5" />
                 </span>
-                <div>
-                  <h3 className="text-sm font-semibold text-espresso">{n.title}</h3>
-                  <p className="mt-0.5 text-xs text-muted-foreground">{n.body}</p>
-                </div>
-              </div>
+                <h3 className="mt-4 text-sm font-semibold text-espresso">{n.title}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{n.body}</p>
+              </Reveal>
             ))}
           </div>
           <p className="mx-auto mt-6 max-w-2xl text-center text-xs leading-relaxed text-muted-foreground">

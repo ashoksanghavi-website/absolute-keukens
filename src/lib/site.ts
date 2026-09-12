@@ -61,10 +61,10 @@ export const FOOTER_LINKS = {
 /* ------------------------------------------------------------------ */
 
 export const TRUST = [
-  { value: "500+", label: "Keukens vernieuwd" },
-  { value: "4,9", label: "Gemiddeld op reviews" },
-  { value: "10 jaar", label: "Garantie op folie" },
-  { value: "1 dag", label: "Gemiddelde plaatsing" },
+  { value: "500+", num: 500, decimals: 0, suffix: "+", label: "Keukens vernieuwd" },
+  { value: "4,9", num: 4.9, decimals: 1, suffix: "", label: "Gemiddeld op reviews" },
+  { value: "10 jaar", num: 10, decimals: 0, suffix: " jaar", label: "Garantie op folie" },
+  { value: "1 dag", num: 1, decimals: 0, suffix: " dag", label: "Gemiddelde plaatsing" },
 ] as const;
 
 /* ------------------------------------------------------------------ */
