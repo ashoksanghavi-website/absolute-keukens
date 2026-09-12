@@ -29,15 +29,24 @@ export function Reasons() {
         </div>
 
         <RevealGroup className="grid gap-5 sm:grid-cols-2">
-          {REASONS.map((r) => (
+          {REASONS.map((r, i) => (
             <RevealItem
               key={r.title}
-              className="group rounded-3xl border border-border bg-ivory p-6 transition-all duration-500 hover:-translate-y-1 hover:border-brass/40 hover:shadow-[0_24px_50px_-30px_rgba(35,27,18,0.35)]"
+              className="group relative h-full overflow-hidden rounded-[1.5rem] border border-border bg-ivory p-6 transition-all duration-500 hover:-translate-y-1.5 hover:border-brass/40 hover:shadow-[0_36px_70px_-40px_rgba(35,27,18,0.45)]"
             >
-              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-olive/12 text-olive transition-colors duration-500 group-hover:bg-olive group-hover:text-ivory">
-                <Icon name={r.icon as IconName} className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 font-display text-lg font-semibold text-espresso">
+              <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-brass to-brass-soft transition-transform duration-500 group-hover:scale-x-100" />
+              <div aria-hidden className="pointer-events-none absolute -right-6 -top-8 h-24 w-24 rounded-full bg-brass/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="flex items-center justify-between">
+                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-olive/12 text-olive transition-all duration-500 group-hover:scale-105 group-hover:bg-olive group-hover:text-ivory">
+                  <Icon name={r.icon as IconName} className="h-6 w-6" />
+                </span>
+                <span className="font-display text-5xl font-semibold text-espresso/[0.07] transition-colors duration-500 group-hover:text-brass/25">
+                  0{i + 1}
+                </span>
+              </div>
+
+              <h3 className="mt-6 font-display text-lg font-semibold text-espresso">
                 {r.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">

@@ -35,7 +35,7 @@ export function Projects() {
             transition={{ duration: 0.7, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
             className={cn(
               "group relative overflow-hidden rounded-3xl",
-              i === 0 && "col-span-2 row-span-2 lg:col-span-2 lg:row-span-2"
+              i === 0 && "lg:col-span-2 lg:row-span-2"
             )}
           >
             <Image
