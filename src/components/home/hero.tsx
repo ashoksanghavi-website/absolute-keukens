@@ -1,12 +1,11 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { Star, Camera, Ruler, Check } from "lucide-react";
+import { motion } from "framer-motion";
+import { Star, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { img, KITCHENS } from "@/lib/images";
-import { COMPANY } from "@/lib/site";
+import { BeforeAfter } from "@/components/ui/before-after";
+import { KITCHENS } from "@/lib/images";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -26,22 +25,12 @@ function Word({ children, delay }: { children: React.ReactNode; delay: number })
 }
 
 export function Hero() {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const yImg = useTransform(scrollYProgress, [0, 1], [0, 90]);
-  const yCard = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const scaleImg = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
-
   return (
-    <section ref={ref} className="grain relative overflow-hidden bg-ivory">
-      {/* ambient glows */}
+    <section className="grain relative overflow-hidden bg-ivory">
       <div aria-hidden className="pointer-events-none absolute -left-40 top-10 h-96 w-96 rounded-full bg-brass/15 blur-3xl" />
       <div aria-hidden className="pointer-events-none absolute right-0 top-1/3 h-80 w-80 rounded-full bg-olive/10 blur-3xl" />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 pb-16 pt-10 sm:px-6 md:pb-24 md:pt-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
         {/* Copy */}
         <div className="relative z-10">
           <motion.div
@@ -108,70 +97,25 @@ export function Hero() {
           </motion.ul>
         </div>
 
-        {/* Visual */}
-        <div className="relative">
-          <motion.div
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: EASE, delay: 0.2 }}
-            className="relative aspect-[4/5] overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-30px_rgba(35,27,18,0.45)] sm:aspect-[4/4.4]"
-          >
-            <motion.div style={{ y: yImg, scale: scaleImg }} className="absolute inset-0">
-              <Image
-                src={img(KITCHENS.heroMain, { w: 1300 })}
-                alt="Gewrapte moderne keuken van Absolute Keukens"
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 560px"
-                className="object-cover"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-espresso/25 via-transparent to-transparent" />
-          </motion.div>
-
-          {/* Floating price card */}
-          <motion.div
-            style={{ y: yCard }}
-            initial={{ opacity: 0, y: 30, x: -10 }}
-            animate={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.7 }}
-            className="absolute -bottom-6 -left-3 w-60 rounded-2xl border border-white/60 bg-white/85 p-4 shadow-xl backdrop-blur-md sm:-left-8"
-          >
-            <div className="flex items-center gap-2 text-xs font-semibold text-brass-deep">
-              <Camera className="h-4 w-4" />
-              Fotoscan indicatie
-            </div>
-            <div className="mt-2 flex items-end gap-1">
-              <span className="font-display text-3xl font-semibold text-espresso">€ 1.480</span>
-              <span className="mb-1 text-xs text-muted-foreground">richtprijs</span>
-            </div>
-            <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-sand">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "78%" }}
-                transition={{ duration: 1.4, ease: EASE, delay: 1.2 }}
-                className="h-full rounded-full bg-gradient-to-r from-brass to-brass-deep"
-              />
-            </div>
-            <p className="mt-2 text-[0.7rem] text-muted-foreground">
-              Herkend: 11 fronten, 6 lades, 2 zijpanelen
-            </p>
-          </motion.div>
-
-          {/* Floating rating chip */}
-          <motion.div
-            initial={{ opacity: 0, y: -20, x: 10 }}
-            animate={{ opacity: 1, y: 0, x: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.9 }}
-            className="absolute -right-2 top-6 flex items-center gap-2 rounded-full border border-white/60 bg-white/85 px-3 py-2 shadow-lg backdrop-blur-md sm:-right-5"
-          >
-            <Ruler className="h-4 w-4 text-olive" />
-            <div className="leading-none">
-              <div className="font-display text-sm font-semibold text-espresso">Op maat</div>
-              <div className="text-[0.65rem] text-muted-foreground">ingemeten</div>
-            </div>
-          </motion.div>
-        </div>
+        {/* Visual — interactive before / after */}
+        <motion.div
+          initial={{ opacity: 0, scale: 1.04, y: 16 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, ease: EASE, delay: 0.25 }}
+          className="relative"
+        >
+          <div className="rounded-[2rem] bg-white/60 p-2 shadow-[0_40px_80px_-30px_rgba(35,27,18,0.45)] backdrop-blur">
+            <BeforeAfter
+              beforeId={KITCHENS.classic}
+              afterId={KITCHENS.matteGreen}
+              rounded="rounded-[1.6rem]"
+              className="aspect-[4/3] sm:aspect-[5/5.2]"
+            />
+          </div>
+          <span className="mt-3 block text-center text-xs font-medium text-muted-foreground">
+            Sleep over de foto en zie het verschil
+          </span>
+        </motion.div>
       </div>
     </section>
   );

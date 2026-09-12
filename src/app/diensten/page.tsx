@@ -5,9 +5,10 @@ import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
+import { CtaBand } from "@/components/site/cta-band";
 import { Icon, type IconName } from "@/components/site/icon";
 import { SERVICES, FINISHES } from "@/lib/site";
-import { img } from "@/lib/images";
+import { img, KITCHENS } from "@/lib/images";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -108,6 +109,15 @@ export default function DienstenPage() {
           ))}
         </div>
       </Section>
+
+      <CtaBand
+        variant="image"
+        imageId={KITCHENS.woodWarm}
+        eyebrow="Benieuwd naar de mogelijkheden"
+        title="Laat ons meedenken over jouw keuken"
+        text="Van kleuradvies tot een compleet nieuw werkblad. Vertel ons je wensen en we maken er samen iets moois van."
+        secondary={{ label: "Neem contact op", href: "/contact" }}
+      />
     </>
   );
 }

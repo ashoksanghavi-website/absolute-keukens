@@ -5,6 +5,7 @@ import { Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { BeforeAfter } from "@/components/ui/before-after";
+import { CtaBand } from "@/components/site/cta-band";
 import { PROJECTS, TRUST } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -64,6 +65,14 @@ export default function ProjectenPage() {
           ))}
         </div>
       </Section>
+
+      <CtaBand
+        variant="brass"
+        eyebrow="Word onze volgende make over"
+        title="Jouw keuken hier over een paar weken?"
+        text="Bekijk wat een make over voor jouw keuken kan betekenen. Bereken vrijblijvend je richtprijs."
+        secondary={{ label: "Vraag een offerte aan", href: "/contact" }}
+      />
     </>
   );
 }

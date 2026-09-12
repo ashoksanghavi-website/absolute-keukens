@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
 import { COMPANY, FOOTER_LINKS } from "@/lib/site";
-import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/ui/reveal";
 import { LogoMark } from "@/components/site/logo";
 
 function TikTokIcon({ className }: { className?: string }) {
@@ -16,35 +14,6 @@ function TikTokIcon({ className }: { className?: string }) {
 export function Footer() {
   return (
     <footer className="relative">
-      {/* Pre-footer conversion band */}
-      <section className="relative overflow-hidden bg-olive text-ivory">
-        <div className="grain pointer-events-none absolute inset-0 opacity-30" />
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brass/25 blur-3xl"
-        />
-        <div className="relative mx-auto grid max-w-7xl gap-8 px-6 py-16 md:grid-cols-[1.4fr_1fr] md:items-center md:py-20">
-          <Reveal>
-            <p className="eyebrow text-brass-soft">Klaar voor de make over</p>
-            <h2 className="mt-3 max-w-xl font-display text-4xl font-semibold leading-[1.05] text-ivory md:text-5xl">
-              Jouw keuken als nieuw. Vaak binnen één dag.
-            </h2>
-            <p className="mt-4 max-w-md text-ivory/75">
-              Vraag vrijblijvend je prijsindicatie aan. Upload een paar foto's en
-              ontvang direct een heldere richtprijs op maat.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1} className="flex flex-col gap-3 md:items-end">
-            <Button href="/prijs-berekenen" variant="primary" size="lg" arrow>
-              Bereken je prijs
-            </Button>
-            <Button href="/contact" variant="outline" size="lg" className="border-ivory/30 text-ivory hover:border-brass-soft hover:text-brass-soft">
-              Plan een adviesgesprek
-            </Button>
-          </Reveal>
-        </div>
-      </section>
-
       {/* Main footer */}
       <div className="bg-espresso text-ivory/70">
         <div className="mx-auto max-w-7xl px-6 py-16">

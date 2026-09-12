@@ -5,6 +5,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
+import { CtaBand } from "@/components/site/cta-band";
 import { TRUST } from "@/lib/site";
 import { img, KITCHENS, DETAILS } from "@/lib/images";
 
@@ -93,20 +94,38 @@ export default function OverOnsPage() {
           title="Onze waarden"
           intro="Drie uitgangspunten die je terugziet in elk project dat we oppakken."
         />
-        <div className="mt-12 grid gap-5 sm:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
           {VALUES.map((v, i) => (
-            <Reveal key={v.title} delay={i * 0.08}>
-              <div className="h-full rounded-3xl border border-border bg-ivory p-7 text-center">
-                <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-olive/12 text-olive">
-                  <v.icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 font-display text-lg font-semibold text-espresso">{v.title}</h3>
-                <p className="mt-2 text-sm text-muted-foreground">{v.body}</p>
+            <Reveal key={v.title} delay={i * 0.1}>
+              <div className="group relative h-full overflow-hidden rounded-[1.75rem] border border-border bg-ivory p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-brass/40 hover:shadow-[0_36px_70px_-40px_rgba(35,27,18,0.45)]">
+                {/* top accent */}
+                <span className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-brass to-brass-soft transition-transform duration-500 group-hover:scale-x-100" />
+                <div aria-hidden className="pointer-events-none absolute -right-6 -top-8 h-24 w-24 rounded-full bg-brass/10 blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                <div className="flex items-center justify-between">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-olive/12 text-olive transition-colors duration-500 group-hover:bg-olive group-hover:text-ivory">
+                    <v.icon className="h-6 w-6" />
+                  </span>
+                  <span className="font-display text-5xl font-semibold text-espresso/[0.08] transition-colors duration-500 group-hover:text-brass/25">
+                    0{i + 1}
+                  </span>
+                </div>
+
+                <h3 className="mt-6 font-display text-xl font-semibold text-espresso">{v.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{v.body}</p>
               </div>
             </Reveal>
           ))}
         </div>
       </Section>
+
+      <CtaBand
+        variant="olive"
+        eyebrow="Zullen we kennismaken"
+        title="Benieuwd wat we voor jouw keuken kunnen doen?"
+        text="Vraag vrijblijvend je prijsindicatie aan of plan een gesprek. We denken graag met je mee."
+        secondary={{ label: "Plan een gesprek", href: "/contact" }}
+      />
     </>
   );
 }

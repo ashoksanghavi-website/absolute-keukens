@@ -4,7 +4,9 @@ import { Section } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { Accordion } from "@/components/ui/accordion";
+import { CtaBand } from "@/components/site/cta-band";
 import { FAQS } from "@/lib/site";
+import { KITCHENS } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Veelgestelde vragen",
@@ -33,6 +35,16 @@ export default function FaqPage() {
           </Reveal>
         </div>
       </Section>
+
+      <CtaBand
+        variant="image"
+        imageId={KITCHENS.marble}
+        eyebrow="Staat jouw vraag er niet bij"
+        title="We denken graag persoonlijk met je mee"
+        text="Bel, mail of stuur een bericht. Je krijgt snel antwoord van iemand die je keuken echt begrijpt."
+        primary={{ label: "Neem contact op", href: "/contact" }}
+        secondary={{ label: "Bereken je prijs", href: "/prijs-berekenen" }}
+      />
     </>
   );
 }

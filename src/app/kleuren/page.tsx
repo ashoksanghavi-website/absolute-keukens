@@ -5,6 +5,7 @@ import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
+import { CtaBand } from "@/components/site/cta-band";
 import { COLOR_GROUPS, FINISHES } from "@/lib/site";
 import { img } from "@/lib/images";
 
@@ -108,6 +109,14 @@ export default function KleurenPage() {
           </div>
         </Reveal>
       </Section>
+
+      <CtaBand
+        variant="panel"
+        eyebrow="Jouw kleur gevonden?"
+        title="Zie je kleur terug in je eigen keuken"
+        text="Bereken je prijs of vraag gratis stalen aan en kies thuis, in je eigen licht, de perfecte tint."
+        secondary={{ label: "Vraag stalen aan", href: "/contact" }}
+      />
     </>
   );
 }

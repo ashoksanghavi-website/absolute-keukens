@@ -312,6 +312,49 @@ export const FINISHES = [
 ] as const;
 
 /* ------------------------------------------------------------------ */
+/*  Packages / pricing                                                */
+/* ------------------------------------------------------------------ */
+
+export const PACKAGES = [
+  {
+    name: "Kleine keuken",
+    size: "Tot 4 lades en 5 kasten",
+    from: 449,
+    featured: false,
+    points: [
+      "Fronten en zichtzijden gewrapt",
+      "Premium folie in jouw kleur",
+      "Vakkundige montage",
+      "Tien jaar garantie",
+    ],
+  },
+  {
+    name: "Middelgrote keuken",
+    size: "Tot 6 lades en 9 kasten",
+    from: 799,
+    featured: true,
+    points: [
+      "Alles uit het kleine pakket",
+      "Grotere fronten en panelen",
+      "Nieuwe grepen naar keuze",
+      "Voorrang in de planning",
+    ],
+  },
+  {
+    name: "Grote keuken",
+    size: "Tot 8 lades en 12 kasten",
+    from: 1099,
+    featured: false,
+    points: [
+      "Alles uit het middelgrote pakket",
+      "Eiland of extra kastenwand",
+      "Advies aan huis met stalen",
+      "Optioneel nieuw werkblad",
+    ],
+  },
+] as const;
+
+/* ------------------------------------------------------------------ */
 /*  FAQ                                                                */
 /* ------------------------------------------------------------------ */
 
