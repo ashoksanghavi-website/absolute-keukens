@@ -10,7 +10,6 @@ import {
   Camera,
   Ruler,
   Palette,
-  Sparkle,
   type LucideProps,
 } from "lucide-react";
 
@@ -31,7 +30,6 @@ const ICONS = {
   camera: Camera,
   ruler: Ruler,
   palette: Palette,
-  spark: Sparkle,
 } as const;
 
 export type IconName = keyof typeof ICONS;

@@ -6,6 +6,7 @@ import { Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
 import { Button } from "@/components/ui/button";
 import { CtaBand } from "@/components/site/cta-band";
+import { KleurenDownload } from "@/components/site/kleuren-download";
 import { COLOR_GROUPS, FINISHES } from "@/lib/site";
 import { img } from "@/lib/images";
 
@@ -57,6 +58,12 @@ export default function KleurenPage() {
             </Reveal>
           ))}
         </div>
+      </Section>
+
+      <Section className="bg-ivory pt-0">
+        <Reveal>
+          <KleurenDownload />
+        </Reveal>
       </Section>
 
       <Section className="bg-card">

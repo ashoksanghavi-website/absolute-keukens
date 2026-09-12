@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { ShieldCheck, Leaf, Clock, Sparkles, Camera, Palette, Ruler, CalendarCheck } from "lucide-react";
+import { ShieldCheck, Leaf, Clock, Wind, Camera, Palette, Ruler, CalendarCheck } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
@@ -23,7 +23,7 @@ const GUARANTEES = [
   { icon: ShieldCheck, title: "Tien jaar garantie", body: "Op de folie en het vakwerk. Kwaliteit waar je jaren plezier van hebt." },
   { icon: Clock, title: "Klaar in één dag", body: "De meeste keukens vernieuwen we binnen één werkdag." },
   { icon: Leaf, title: "Duurzame keuze", body: "Je bestaande keuken blijft staan, dat scheelt bergen afval." },
-  { icon: Sparkles, title: "Netjes achtergelaten", body: "We werken schoon en ruimen alles op alsof we er niet waren." },
+  { icon: Wind, title: "Netjes achtergelaten", body: "We werken schoon en ruimen alles op alsof we er niet waren." },
 ];
 
 export default function WerkwijzePage() {

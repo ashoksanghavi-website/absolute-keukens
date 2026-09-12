@@ -46,6 +46,11 @@ export function CtaBand({
   if (variant === "olive") {
     return (
       <section className="relative overflow-hidden bg-olive text-ivory">
+        {imageId && (
+          <Image src={img(imageId, { w: 1800 })} alt="" fill sizes="100vw" className="object-cover" />
+        )}
+        <div className="absolute inset-0 bg-olive/85" />
+        <div className="absolute inset-0 bg-gradient-to-r from-olive via-olive/85 to-olive/40" />
         <div className="grain pointer-events-none absolute inset-0 opacity-30" />
         <div aria-hidden className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brass/25 blur-3xl" />
         <div className="relative mx-auto grid max-w-7xl gap-8 px-6 py-16 md:grid-cols-[1.4fr_1fr] md:items-center md:py-20">

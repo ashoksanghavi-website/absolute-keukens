@@ -10,6 +10,7 @@ import { Testimonials } from "@/components/home/testimonials";
 import { Colors } from "@/components/home/colors";
 import { Faq } from "@/components/home/faq";
 import { CtaBand } from "@/components/site/cta-band";
+import { KITCHENS } from "@/lib/images";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <Faq />
       <CtaBand
         variant="olive"
+        imageId={KITCHENS.matteGreen}
         title="Jouw keuken als nieuw. Vaak binnen één dag."
         text="Vraag vrijblijvend je prijsindicatie aan. Upload een paar foto's en ontvang direct een heldere richtprijs op maat."
         secondary={{ label: "Plan een adviesgesprek", href: "/contact" }}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { Heart, Sparkles, Handshake } from "lucide-react";
+import { Heart, Award, Handshake } from "lucide-react";
 import { PageHero } from "@/components/site/page-hero";
 import { Section, SectionHeading } from "@/components/ui/section";
 import { Reveal } from "@/components/ui/reveal";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 const VALUES = [
-  { icon: Sparkles, title: "Vakmanschap", body: "Strak, netjes en tot in de puntjes afgewerkt. We leveren werk waar we trots op zijn." },
+  { icon: Award, title: "Vakmanschap", body: "Strak, netjes en tot in de puntjes afgewerkt. We leveren werk waar we trots op zijn." },
   { icon: Heart, title: "Persoonlijk", body: "Geen standaardaanpak. We luisteren naar je wensen en denken met je mee." },
   { icon: Handshake, title: "Eerlijk", body: "Heldere prijzen en duidelijke afspraken. Geen verrassingen achteraf." },
 ];

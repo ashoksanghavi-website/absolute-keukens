@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Phone, Menu, X, Star, ArrowRight } from "lucide-react";
+import { Phone, Menu, X, Star, ArrowRight, Mail } from "lucide-react";
 import { NAV, COMPANY } from "@/lib/site";
 import { Button } from "@/components/ui/button";
 import { Wordmark } from "@/components/site/logo";
@@ -29,23 +29,31 @@ export function Header() {
   return (
     <>
       {/* Slim top strip */}
-      <div className="hidden bg-espresso text-ivory md:block">
-        <div className="mx-auto flex h-9 max-w-7xl items-center justify-between px-6 text-[0.78rem]">
-          <span className="flex items-center gap-2 text-ivory/80">
-            <Star className="h-3.5 w-3.5 fill-brass text-brass" />
-            4,9 gemiddeld uit meer dan 500 keukens
+      <div className="relative hidden bg-gradient-to-r from-espresso via-olive-deep to-espresso text-ivory md:block">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-[0.78rem]">
+          <span className="flex items-center gap-2.5 text-ivory/85">
+            <span className="flex gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star key={i} className="h-3 w-3 fill-brass text-brass" />
+              ))}
+            </span>
+            <span>
+              <strong className="font-semibold text-ivory">4,9</strong> gemiddeld uit meer dan 500 keukens
+            </span>
           </span>
-          <div className="flex items-center gap-6 text-ivory/80">
-            <a href={COMPANY.emailHref} className="transition-colors hover:text-brass-soft">
+          <div className="flex items-center gap-5 text-ivory/75">
+            <a href={COMPANY.emailHref} className="flex items-center gap-1.5 transition-colors hover:text-brass-soft">
+              <Mail className="h-3.5 w-3.5 text-brass" />
               {COMPANY.email}
             </a>
-            <span className="h-3 w-px bg-ivory/20" />
+            <span className="h-3.5 w-px bg-ivory/15" />
             <a href={COMPANY.phoneHref} className="flex items-center gap-1.5 transition-colors hover:text-brass-soft">
-              <Phone className="h-3.5 w-3.5" />
+              <Phone className="h-3.5 w-3.5 text-brass" />
               {COMPANY.phone}
             </a>
           </div>
         </div>
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-brass/40 to-transparent" />
       </div>
 
       {/* Main bar */}
@@ -72,33 +80,37 @@ export function Header() {
             </motion.span>
           </Link>
 
-          {/* Nav with sliding highlight */}
+          {/* Nav with sliding pill + underline */}
           <nav
             className="hidden items-center gap-0.5 lg:flex"
             onMouseLeave={() => setHovered(null)}
           >
             {NAV.map((item) => {
-              const active = pathname === item.href;
+              const highlighted = (hovered ?? pathname) === item.href;
               return (
                 <Link
                   key={item.href}
                   href={item.href}
                   onMouseEnter={() => setHovered(item.href)}
                   className={cn(
-                    "relative rounded-full px-4 py-2 text-[0.92rem] font-medium transition-colors duration-200",
-                    active ? "text-brass-deep" : "text-espresso/80 hover:text-espresso"
+                    "relative rounded-full px-4 py-2 text-[0.92rem] font-medium transition-colors duration-300",
+                    highlighted ? "text-brass-deep" : "text-espresso/75 hover:text-espresso"
                   )}
                 >
                   {hovered === item.href && (
                     <motion.span
-                      layoutId="nav-highlight"
-                      className="absolute inset-0 -z-0 rounded-full bg-secondary"
-                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                      layoutId="nav-pill"
+                      className="absolute inset-0 -z-0 rounded-full bg-brass/10"
+                      transition={{ type: "spring", stiffness: 500, damping: 40 }}
                     />
                   )}
                   <span className="relative z-10">{item.label}</span>
-                  {active && (
-                    <span className="absolute bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-brass" />
+                  {highlighted && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute inset-x-4 -bottom-0.5 h-[3px] rounded-full bg-gradient-to-r from-brass to-brass-deep"
+                      transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                    />
                   )}
                 </Link>
               );
