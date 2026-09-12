@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { BeforeAfter } from "@/components/ui/before-after";
 import { CtaBand } from "@/components/site/cta-band";
 import { PROJECTS, TRUST } from "@/lib/site";
+import { KITCHENS } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Projecten",
@@ -68,6 +69,7 @@ export default function ProjectenPage() {
 
       <CtaBand
         variant="brass"
+        imageId={KITCHENS.islandDark}
         eyebrow="Word onze volgende make over"
         title="Jouw keuken hier over een paar weken?"
         text="Bekijk wat een make over voor jouw keuken kan betekenen. Bereken vrijblijvend je richtprijs."

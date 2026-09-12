@@ -110,30 +110,44 @@ export function CtaBand({
     );
   }
 
-  /* ---------- brass: warm gradient panel ---------- */
+  /* ---------- brass: warm gradient panel with photo ---------- */
   if (variant === "brass") {
     return (
       <section className="bg-ivory py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
           <motion.div
             {...reveal}
-            className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-brass via-[#cf9c48] to-brass-deep px-6 py-14 text-center sm:px-10 md:py-16"
+            className="relative overflow-hidden rounded-[2.5rem] px-6 py-16 text-center shadow-[0_50px_90px_-45px_rgba(156,110,38,0.65)] sm:px-10 md:py-20"
           >
+            {/* background photo */}
+            <Image
+              src={img(imageId ?? "1600585154340-be6161a56a0c", { w: 1800 })}
+              alt=""
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+            {/* warm gold wash keeps the brand colour dominant while the photo adds depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-brass via-[#cf9c48] to-brass-deep opacity-[0.9]" />
+            <div className="absolute inset-0 bg-espresso/10 mix-blend-multiply" />
             <div className="grain pointer-events-none absolute inset-0 opacity-20" />
-            <div aria-hidden className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-white/20 blur-3xl" />
-            <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-espresso/15 blur-3xl" />
+            <div aria-hidden className="pointer-events-none absolute -left-16 bottom-0 h-56 w-56 rounded-full bg-white/25 blur-3xl" />
+            <div aria-hidden className="pointer-events-none absolute -right-10 -top-10 h-48 w-48 rounded-full bg-espresso/20 blur-3xl" />
+            {/* refined inner frame */}
+            <div className="pointer-events-none absolute inset-4 rounded-[2rem] ring-1 ring-white/25 sm:inset-5" />
+
             <div className="relative">
               <p className="eyebrow text-espresso/70">{eyebrow}</p>
-              <h2 className="mx-auto mt-4 max-w-2xl font-display text-4xl font-semibold leading-[1.05] text-espresso md:text-5xl">
+              <h2 className="mx-auto mt-4 max-w-2xl font-display text-4xl font-semibold leading-[1.05] text-espresso drop-shadow-[0_1px_1px_rgba(255,255,255,0.25)] md:text-5xl">
                 {title}
               </h2>
-              {text && <p className="mx-auto mt-4 max-w-lg text-espresso/75">{text}</p>}
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
+              {text && <p className="mx-auto mt-4 max-w-lg text-espresso/80">{text}</p>}
+              <div className="mt-9 flex flex-wrap justify-center gap-3">
                 <Button href={primary.href} variant="dark" size="lg" arrow>
                   {primary.label}
                 </Button>
                 {secondary && (
-                  <Button href={secondary.href} variant="outline" size="lg" className="border-espresso/25 text-espresso hover:border-espresso hover:text-espresso">
+                  <Button href={secondary.href} variant="outline" size="lg" className="border-espresso/30 text-espresso hover:border-espresso hover:bg-espresso hover:text-ivory">
                     {secondary.label}
                   </Button>
                 )}
