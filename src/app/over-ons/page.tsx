@@ -165,8 +165,8 @@ export default function OverOnsPage() {
         />
         <div className="mt-12 grid gap-6 md:grid-cols-2">
           {PILLARS.map((p, i) => (
-            <Reveal key={p.tag} delay={i * 0.1}>
-              <div className="group relative overflow-hidden rounded-[1.75rem] border border-border bg-ivory">
+            <Reveal key={p.tag} delay={i * 0.1} className="h-full">
+              <div className="group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-border bg-ivory">
                 <div className="relative aspect-[16/9] overflow-hidden">
                   <Image src={img(p.image, { w: 900 })} alt={p.title} fill sizes="(max-width: 768px) 100vw, 520px" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-espresso/50 to-transparent" />
@@ -175,7 +175,7 @@ export default function OverOnsPage() {
                     {p.tag}
                   </span>
                 </div>
-                <div className="p-6">
+                <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-display text-xl font-semibold text-espresso">{p.title}</h3>
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
                 </div>
