@@ -1,0 +1,234 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ============================================================
+   ABSOLUTE KEUKENS — Design system
+   Bright, warm, premium. Ivory canvas · honey brass · olive.
+   ============================================================ */
+
+:root {
+  --radius: 0.9rem;
+
+  /* Surfaces */
+  --background: #f7f2e9;
+  --foreground: #231b12;
+
+  --card: #fffdf9;
+  --card-foreground: #231b12;
+
+  --popover: #fffdf9;
+  --popover-foreground: #231b12;
+
+  /* Brand — honey brass */
+  --primary: #be8a3a;
+  --primary-foreground: #ffffff;
+
+  /* Warm secondary surface */
+  --secondary: #efe7d8;
+  --secondary-foreground: #2c2318;
+
+  --muted: #f0e9db;
+  --muted-foreground: #7a6e5c;
+
+  /* Depth accent — deep olive/forest (the "surprise") */
+  --accent: #3f5540;
+  --accent-foreground: #f7f2e9;
+
+  --destructive: #b4432b;
+  --destructive-foreground: #ffffff;
+
+  --border: #e7dccb;
+  --input: #e2d6c2;
+  --ring: #be8a3a;
+
+  /* Named brand tokens used across the site */
+  --brass: #be8a3a;
+  --brass-deep: #9c6e26;
+  --brass-soft: #e6cf9f;
+  --olive: #3f5540;
+  --olive-deep: #2b3b2c;
+  --terracotta: #c1663f;
+  --ivory: #f7f2e9;
+  --sand: #efe7d8;
+  --espresso: #231b12;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brass: var(--brass);
+  --color-brass-deep: var(--brass-deep);
+  --color-brass-soft: var(--brass-soft);
+  --color-olive: var(--olive);
+  --color-olive-deep: var(--olive-deep);
+  --color-terracotta: var(--terracotta);
+  --color-ivory: var(--ivory);
+  --color-sand: var(--sand);
+  --color-espresso: var(--espresso);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--brass);
+  color: #fff;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Custom, warm scrollbar */
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--sand); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--brass), var(--brass-deep));
+  border-radius: 99px;
+  border: 3px solid var(--sand);
+}
+
+/* ---------- Utility helpers ---------- */
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+.font-display { font-family: var(--font-display); }
+
+/* Kicker / eyebrow label */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+
+/* Fine grain / paper texture overlay */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* Brass underline for section headings */
+.rule {
+  display: inline-block;
+  width: 58px;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--brass), var(--brass-soft));
+}
+
+/* Gradient brass text */
+.text-gradient {
+  background: linear-gradient(120deg, var(--brass-deep), var(--brass) 55%, #dcb668);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ============================================================
+   Motion keyframes
+   ============================================================ */
+
+/* Scroll-reel testimonials (component-provided) */
+@keyframes scroll-reel-char-rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes scroll-reel-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+.scroll-reel-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em);
+  animation: scroll-reel-char-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.scroll-reel-exit {
+  animation: scroll-reel-exit 0.24s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+/* Slow ambient float */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+.animate-float-slow { animation: float-slow 7s ease-in-out infinite; }
+
+/* Marquee for logo / trust strip */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee var(--marquee-duration, 32s) linear infinite; }
+
+/* Shimmer sweep for buttons */
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-120%) skewX(-18deg); }
+  100% { transform: translateX(220%) skewX(-18deg); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-float-slow,
+  .animate-marquee { animation: none !important; }
+  .scroll-reel-char { opacity: 1; transform: none; animation: none; }
+}
