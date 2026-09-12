@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Camera, Ruler, Palette, Check } from "lucide-react";
+import { Camera, Ruler, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/ui/reveal";
 import { img, KITCHENS } from "@/lib/images";
@@ -11,12 +11,6 @@ const STEPS = [
   { icon: Camera, title: "Upload je foto's", body: "Twee tot vier hoeken van je keuken volstaan." },
   { icon: Ruler, title: "Wij herkennen de onderdelen", body: "Fronten, lades en panelen worden geteld en ingemeten." },
   { icon: Palette, title: "Direct je richtprijs", body: "Een heldere indicatie, gratis en vrijblijvend." },
-];
-
-const DETECTED = [
-  { label: "Fronten", value: 11 },
-  { label: "Lades", value: 6 },
-  { label: "Zijpanelen", value: 2 },
 ];
 
 export function FotoscanCta() {
@@ -99,22 +93,6 @@ export function FotoscanCta() {
                   <span key={c} className={`absolute h-7 w-7 rounded-[3px] border-brass-soft ${c}`} />
                 ))}
 
-                {/* detected chips */}
-                <div className="absolute inset-x-4 bottom-4 flex flex-wrap gap-2">
-                  {DETECTED.map((d, i) => (
-                    <motion.span
-                      key={d.label}
-                      initial={{ opacity: 0, y: 10, scale: 0.9 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.6 + i * 0.2, duration: 0.4 }}
-                      className="flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-espresso backdrop-blur"
-                    >
-                      <Check className="h-3 w-3 text-olive" />
-                      {d.value} {d.label}
-                    </motion.span>
-                  ))}
-                </div>
               </div>
 
               {/* price pill */}
